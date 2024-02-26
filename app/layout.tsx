@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { AuthProvider } from "./AuthContext";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={GeistSans.className}>
+        <AuthProvider>
+          <GoogleOAuthProvider clientId="">{children}</GoogleOAuthProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
